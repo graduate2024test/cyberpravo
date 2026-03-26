@@ -1,0 +1,25 @@
+
+.grid-container {
+  display: grid;
+  column-gap: 2%;
+  row-gap: 2%;
+  grid-template-columns: 120px 360px;
+  grid-template-rows: auto;
+  height: 400px;
+  width: 640px;
+  background-color: darkred;
+  justify-content: space-between;
+  align-content: center;
+  border: 1px solid blue;
+  padding: 3%;
+}
+
+.alma_text {
+  color: gold;
+  font-family: "Courier New", sans-serif;
+  font-size: 1.5em
+}
+
+.date_edit {
+  font-size: 0.7rem;	
+}

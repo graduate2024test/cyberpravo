@@ -5,7 +5,7 @@
   row-gap: 2%;
   grid-template-columns: 120px 360px;
   grid-template-rows: auto;
-  height: 400px;
+  height: 150px;
   width: 640px;
   background-color: darkred;
   justify-content: space-between;
@@ -14,12 +14,26 @@
   padding: 3%;
 }
 
-.alma_text {
+.grid-articles {
+	height: 800px;
+    width: 640px;
+	background-color: whitesmoke;
+	border: 1px solid blue;
+    padding: 3%;
+}
+
+#alma_text {
   color: gold;
-  font-family: "Tahoma", sans-serif;
+  font-family: "Courier New", sans-serif;
+  font-size: 0.8em
+}
+
+#author_name {
+  color: white;
+  font-family: "Courier New", sans-serif;
   font-size: 1.5em
 }
 
-.date_edit {
-  font-size: 0.7rem;	
+a {
+	text-decoration: none;
 }

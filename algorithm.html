@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+	<title>CYBER.PRAVO</title>
+    <link rel="icon" sizes="16x16" type="image/x-icon" href="favicon.ico" />
+	<style>
+      body { font-family: Arial, Helvetica, sans-serif;}
+    </style>
+  </head>
+  
+  <body>
+  
+    <header style="padding: 5%">
+	  <div style="text-align: right;">
+	    <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fcyberpravo.vercel.app%2F&label=visit&icon=github&color=%23084298&message=&style=flat&tz=Europe%2FSaratov">
+	  </div>
+	</header>
+   
+    <main style="padding: 5%">
+	  <div style="text-align: left;">
+		<a href="index.html">GO BACK</a>
+      </div>
+	  <br>
+	  <br>
+	  <div style="font-size: 1.1em; text-align: justify; margin: 5%; padding: 1% ;display: inline-block;">
+	    <table>
+          <tr>
+            <td>
+			  <img src="qsort.png" alt="Быстрая сортировка, анимация" style="width: auto;  height: auto;"/>
+			</td>
+            <td>
+			  Быстрая сортировка, сортировка Хоара (англ. quicksort), часто называемая qsort (по имени в стандартной библиотеке языка Си) — алгоритм сортировки, разработанный английским информатиком Тони Хоаром во время его работы в МГУ в 1960 году. Один из самых быстрых известных универсальных алгоритмов сортировки массивов: в среднем <math>O(n\log n)</math> обменов при упорядочении <math>n</math> элементов; из-за наличия ряда недостатков на практике обычно используется с некоторыми доработками.
+			  <br>
+			  <br>
+			  <pre>
+			    <code>
+                  algorithm quicksort(A, lo, hi) is
+                    if lo < hi then
+                      p:= partition(A, lo, hi)
+                      quicksort(A, lo, p)
+                      quicksort(A, p + 1, hi)
+					  
+                  algorithm partition(A, low, high) is
+                    pivot:= A[(low + high) / 2]
+                    i:= low
+                    j:= high
+                    loop forever
+                      while A[i] < pivot 
+                        i:= i + 1
+                      while A[j] > pivot
+                        j:= j - 1
+                      if i >= j then
+                        return j
+                      swap A[i++] with A[j--]
+                </code>
+			  </pre>
+			</td>
+		  </tr>
+        </table>
+	  </div>
+	</main>
+	
+	<footer style="padding: 5%">
+	  <div style="font-size: 0.9em; text-align: right; color: darkred;">
+	     <span>&copy; vladimir y.</span>
+	  </div>
+	</footer>
+	
+  </body>
+</html>

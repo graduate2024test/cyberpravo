@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+	<title>CYBER.PRAVO</title>
+    <link rel="icon" sizes="16x16" type="image/x-icon" href="favicon.ico" />
+	<style>
+      body {
+	    font-family: Arial,
+		Helvetica, sans-serif;
+		}
+	  table {
+		font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+		font-size: 14px;
+		border-collapse: collapse;
+		text-align: center;
+		}
+	  th, td:first-child {
+		background: #AFCDE7;
+		color: white;
+		padding: 10px 20px;
+		}
+	  th, td {
+		border-style: solid;
+		border-width: 0 1px 1px 0;
+		border-color: white;
+		}
+	  td {
+		background: #D8E6F3;
+		}
+	  th:first-child, td:first-child {
+		text-align: left;
+		}
+    </style>
+  </head>
+  
+  <body>
+  
+    <header style="padding: 5%">
+	  <div style="text-align: right;">
+	    <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fcyberpravo.vercel.app%2F&label=visit&icon=github&color=%23084298&message=&style=flat&tz=Europe%2FSaratov">
+	  </div>
+	</header>
+   
+    <main style="padding: 5%">
+	  <div style="text-align: left;">
+		<a href="index.html">GO BACK</a>
+      </div>
+	  <br>
+	  <br>
+	  <div style="font-size: 1.1em; text-align: justify; margin: 5%; padding: 1% ;display: inline-block;">
+	      <div>
+			  <em>Описание</em>: Программа на языке C++.... вычисление <math>&int; x &middot; log(x) dx</math>:
+			  <br>
+			  <a href="https://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4_%D0%BF%D1%80%D1%8F%D0%BC%D0%BE%D1%83%D0%B3%D0%BE%D0%BB%D1%8C%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2">Формула прямоугольников.</a>
+			  <br>
+			  <a href="https://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4_%D1%82%D1%80%D0%B0%D0%BF%D0%B5%D1%86%D0%B8%D0%B9">Метод трапеций.</a>
+			  <br>
+			  <a href="https://ru.wikipedia.org/wiki/%D0%A4%D0%BE%D1%80%D0%BC%D1%83%D0%BB%D0%B0_%D0%A1%D0%B8%D0%BC%D0%BF%D1%81%D0%BE%D0%BD%D0%B0">Метод Симпсона.</a>
+		  </div>
+		  <div>
+			<pre>
+			  <code>
+				#include <iostream>
+				#include <math.h>
+				using namespace std;
+
+				const double a = exp(1);
+				const double b = exp(2);
+
+
+				//подынтегральная функция
+				double InFunction(double x) {                            
+					return (x*log(x));
+				}
+
+
+				//формула средних прямоугольников для аналитически заданной функции левых
+				double CalcIntegral1(double a, double b, int n)
+				{                                                       
+					double result = 0, h = (b - a) / n;
+
+					for (int i = 0; i < n; i++) {
+						result += InFunction(a + h * (i + 0.5));
+					}
+
+					result *= h;
+					return result;
+				}        
+
+
+				//формула средних прямоугольников для аналитически заданной функции правых
+				double CalcIntegral2(double a, double b, int n)
+				{                                                      
+					double result = 0, h = (b - a) / n;
+
+					for (int i = 0; i < n; i++) {
+						result += InFunction(a + h * i);
+					}
+
+					result *= h;
+					return result;
+				}
+
+
+				//формула средних прямоугольников для аналитически заданной функции средних
+				double CalcIntegral3(double a, double b, int n)
+				{                                                       
+					double result = 0, h = (b - a) / n;
+
+					for (int i = 0; i < n; i++) {
+						result += InFunction(a + h * (i + 1));
+					}
+
+					result *= h;
+					return result;
+				}
+
+
+				//метод трапеций
+				double TrapezoidalIntegral(double a, double b, int n) 
+				{                                                       
+					const double width = (b - a) / n;
+
+					double trapezoidal_integral = 0;
+					for (int step = 0; step < n; step++) {
+						const double x1 = a + step * width;
+						const double x2 = a + (step + 1) * width;
+
+						trapezoidal_integral += 0.5 * (x2 - x1) *
+							(InFunction(x1) + InFunction(x2));
+					}
+
+					return trapezoidal_integral;
+				}
+
+				
+				//метод Симпсона
+				double SimpsonIntegral(double a, double b, int n)
+				{                                                       
+					const double width = (b - a) / n;
+
+					double simpson_integral = 0;
+					for (int step = 0; step < n; step++) {
+						const double x1 = a + step * width;
+						const double x2 = a + (step + 1) * width;
+
+						simpson_integral += (x2 - x1) / 6.0 * (InFunction(x1) + 4.0 *
+							InFunction(0.5 * (x1 + x2)) + InFunction(x2));
+					}
+
+					return simpson_integral;
+				}
+
+				int main()
+				{
+					double result11 = CalcIntegral1(a, b, 50);
+					cout << "Medium Rectangle Formula = " << result11;
+					cout << endl;
+
+					double result12 = CalcIntegral2(a, b, 50);
+					cout << "Left Rectangle Formula = " << result12;
+					cout << endl;
+
+					double result13 = CalcIntegral3(a, b, 50);
+					cout << "Right Rectangle Formula = " << result13;
+					cout << endl;
+
+					double result2 = TrapezoidalIntegral(a, b, 50);
+					cout << "Trapezoidal Integral = " << result2;
+					cout << endl;
+
+					double result3 = SimpsonIntegral(a, b, 50);
+					cout << "Simpson Integral = " << result3;
+					cout << endl;
+
+
+				}
+              </code>
+			</pre>
+		  </div>
+		</div> 
+	</main>
+	
+	<footer style="padding: 5%">
+	  <div style="font-size: 0.9em; text-align: right; color: darkred;">
+	     <span>&copy; vladimir y.</span>
+	  </div>
+	</footer>
+	
+  </body>
+</html>

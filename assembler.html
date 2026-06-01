@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+	<title>CYBER.PRAVO</title>
+    <link rel="icon" sizes="16x16" type="image/x-icon" href="favicon.ico" />
+	<style>
+      body {
+	    font-family: Arial,
+		Helvetica, sans-serif;
+		}
+	  table {
+		font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+		font-size: 14px;
+		border-collapse: collapse;
+		text-align: center;
+		}
+	  th, td:first-child {
+		background: #AFCDE7;
+		color: white;
+		padding: 10px 20px;
+		}
+	  th, td {
+		border-style: solid;
+		border-width: 0 1px 1px 0;
+		border-color: white;
+		}
+	  td {
+		background: #D8E6F3;
+		}
+	  th:first-child, td:first-child {
+		text-align: left;
+		}
+    </style>
+  </head>
+  
+  <body>
+  
+    <header style="padding: 5%">
+	  <div style="text-align: right;">
+	    <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fcyberpravo.vercel.app%2F&label=visit&icon=github&color=%23084298&message=&style=flat&tz=Europe%2FSaratov">
+	  </div>
+	</header>
+   
+    <main style="padding: 5%">
+	  <div style="text-align: left;">
+		<a href="index.html">GO BACK</a>
+      </div>
+	  <br>
+	  <br>
+	  <div style="font-size: 1.1em; text-align: justify; margin: 5%; padding: 1% ;display: inline-block;">
+	      <div>
+			  <em>Описание</em>: Программы на языке Assembler из примеров EX_1, EX_2, EX_3 выводят на экран фамилию, имя и номер группы и завершаются.
+		  </div>
+		  <div>
+			<p>Пример EX_1</p>
+			<pre>
+			  <code>
+				stak segment stack 'stack'      
+				db 256 dup (?)                  
+				stak ends                       
+				data segment 'data'             
+				Hello db 'Yakunin Vladimir 351 CSIT!$' 
+				data ends                       
+				code segment 'code'             
+				assume CS:code,DS:data,SS:stak  
+													
+				start:                          
+				mov AX,data                     
+				mov DS,AX                       
+				mov AH,09h                      
+				mov DX,offset Hello             
+				int 21h                         
+				mov AX,4C00h                    
+				int 21h                         
+				code ends                       
+				end start                       
+              </code>
+			</pre>
+		  </div>
+		  <div>
+			<table>
+			  <caption>ТРАССИРОВКА EX_1</caption>
+			  <tr>
+				<td>Шаг</td><td>Машинный код</td><td>Команда</td><td>AX</td><td>BX</td><td>CX</td><td>DX</td><td>SP</td><td>DS</td><td>SS</td><td>CS</td><td>IP</td><td>CZSOPAID</td>
+			  </tr>
+			  <tr>
+				<td>1</td><td>B8BD48</td><td>MOV AX,48BD</td><td>0000</td><td>0000</td><td>0000</td><td>0000</td><td>0100</td><td>489D</td><td>48AD</td><td>48BF</td><td>0000</td><td>00000010</td>
+			  </tr>
+			  <tr>
+				<td>2</td><td>8ED8</td><td>MOV DS,AX</td><td>48BD</td><td>0000</td><td>0000</td><td>0000</td><td>0100</td><td>489D</td><td>48AD</td><td>48BF</td><td>0003</td><td>00000010</td>
+			  </tr>
+			  <tr>
+				<td>3</td><td>B409</td><td>MOV AH,09</td><td>48BD</td><td>0000</td><td>0000</td><td>0000</td><td>0100</td><td>48BD</td><td>48AD</td><td>48BF</td><td>0005</td><td>00000010</td>
+			  </tr>
+			  <tr>
+				<td>4</td><td>BA0000</td><td>MOV DX,0000</td><td>09BD</td><td>0000</td><td>0000</td><td>0000</td><td>0100</td><td>48BD</td><td>48AD</td><td>48BF</td><td>0007</td><td>000
+			  </tr>
+			  <tr>
+				<td>5</td><td>CD21</td><td>INT 21</td><td>0000</td><td>09BD</td><td>0000</td><td>0000</td><td>0100</td><td>48BD</td><td>48AD</td><td>48BF</td><td>000A</td><td>00000010</td>
+			  </tr>
+			  <tr>
+				<td>6</td><td>B8004C</td><td>MOV AX,4C00</td><td>09BD</td><td>0000</td><td>0000</td><td>0000</td><td>0100</td><td>48BD</td><td>48AD</td><td>48BF</td><td>000C</td><td>00000010</td>
+			  </tr>
+			  <tr>
+				<td>7</td><td>CD21</td><td>INT 21</td><td>0000</td><td>4C00</td><td>0000</td><td>0000</td><td>0100</td><td>48BD</td><td>48AD</td><td>48BF</td><td>000F</td><td>00000010</td>
+			  </tr>
+			</table>
+		  </div>
+		  <br>
+		  <br>
+		  <div>
+			<p>Пример EX_2</p>
+			<pre>
+			  <code>
+			    .model small                 
+                
+				.stack 100h                  
+				.data                        
+				Hello db 'Yakunin Vladimir 351 CSIT!$'
+				.code                        
+				start:                       
+											 
+				mov AX, @data                
+				mov DS,AX                    
+				mov AH,09h
+				mov DX,offset Hello
+				int 21h
+				mov AX,4C00h
+				int 21h
+				end start                     
+            </code>
+		  </pre> 
+		</div>
+		<div>
+		<table>
+		  <caption>ТРАССИРОВКА EX_2</caption>
+		  <tr>
+			<td>Шаг</td><td>Машинный код</td><td>Команда</td><td>AX</td><td>BX</td><td>CX</td><td>DX</td><td>SP</td><td>DS</td><td>SS</td><td>CS</td><td>IP</td><td>CZSOPAID</td>
+		  </tr>
+		  <tr>
+			<td>1</td><td>B8AF48</td><td>MOV 48,AF</td><td>0000</td><td>0000</td><td>0000</td><td>0000</td><td>0100</td><td>489D</td><td>48B1</td><td>48ADv</td><td>0000</td><td>00000010</td>
+  	      </tr>
+		  <tr>
+	        <td>2</td><td>8ED8</td><td>MOV DS,AX</td><td>48AF</td><td>0000</td><td>0000</td><td>0000</td><td>0100</td><td>489D</td><td>48B1</td><td>48AD</td><td>0003</td><td>00000010</td>
+		  </tr>
+		  <tr>
+  	        <td>3</td><td>B409</td><td>MOV AH,09</td><td>48AF</td><td>0000</td><td>0000</td><td>0000</td><td>0100</td><td>48AF</td><td>48B1</td><td>48AD</td><td>0005</td><td>00000010</td>
+		  </tr>
+		  <tr>
+		    <td>4</td><td>BA0000</td><td>MOV DX,0000</td><td>09AF</td><td>0000</td><td>0000</td><td>0000</td><td>0100</td><td>48AF</td><td>48B1</td><td>48AD</td><td>0007</td><td>00000010</td>
+		  </tr>
+		  <tr>
+		    <td>5</td><td>CD21</td><td>INT 21</td><td>0000</td><td>09AF</td><td>0000</td><td>0000</td><td>0100</td><td>48AF</td><td>48B1</td><td>48AD</td><td>000A</td><td>00000010</td>
+  	      </tr>
+		  <tr>
+		    <td>6</td><td>B8004C</td><td>MOV AX,4C00</td><td>09AF</td><td>0000</td><td>0000</td><td>0000</td><td>0100</td><td>48AF</td><td>48B1</td><td>48AD</td><td>000C</td><td>00000010</td>
+		  </tr>
+		  <tr>
+		    <td>7</td><td>CD21</td><td>INT 21</td><td>0000</td><td>4C00</td><td>0000</td><td>0000</td><td>0100</td><td>48AF</td><td>48B1</td><td>48AD</td><td>000F</td><td>00000010</td>
+		  </tr>
+		</table>
+	  </div>
+	  <br>
+	  <br>
+	  <div>
+		  <p>Пример EX_3</p>
+		  <pre>
+		    <code>
+		      .model tiny               
+
+			  .code                     
+			  org 100h                  
+
+			  start:
+			  Hello db 'Yakunin Vladimir 351 CSIT!$'
+			  mov AH,09h
+			  mov DX,offset Hello
+			  int 21h
+			  mov AX,4C00h
+			  int 21h
+			  end start                     
+            </code>
+          </pre>
+		</div>
+		<div>
+		<table>
+		  <caption>ТРАССИРОВКА EX_3</caption>
+		  <tr>
+			<td>Шаг</td><td>Машинный код</td><td>Команда</td><td>AX</td><td>BX</td><td>CX</td><td>DX</td><td>SP</td><td>DS</td><td>SS</td><td>CS</td><td>IP</td><td>CZSOPAID</td><td>SI</td><td>DI</td><td>BP</td>
+		  </tr>
+		  <tr>
+			<td>1</td><td>59</td><td>POP CX</td><td>0000</td><td>0000</td><td>0000</td><td>0000</td><td>0000</td><td>489D</td><td>48AC</td><td>48AD</td><td>0100</td><td>00000010</td><td></td><td></td><td></td>
+		  </tr>
+		  <tr>
+			<td>2</td><td>61</td><td>POPA</td><td></td><td></td><td></td><td></td><td>0002</td><td></td><td></td><td></td><td>0101</td><td></td><td></td><td></td><td>
+		  </tr>
+		  <tr>
+		    <td>3</td><td>6B756E69</td><td>IMUL SI,[DI+6E],00</td><td></td><td>6864</td><td>0048</td><td>4400</td><td>0012</td><td></td><td></td><td></td><td>0102</td><td></td><td>6568</td><td>6474</td><td>706C</td>
+		  </tr>
+		  <tr>
+		    <td>4</td><td>6E</td><td>OUTSB</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>0106</td><td></td><td>0000</td><td></td><td>
+          </tr>
+		  <tr>
+            <td>5</td><td>20566C</td><td>AND [BP+6C],DC</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>0107</td><td></td><td>0001</td><td></td><td></tr>
+		  <tr>
+            <td>6</td><td>61</td><td>POPA</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>010A</td><td>01001010</td><td></td><td></td><td>
+          </tr>
+		  <tr>
+		    <td>7</td><td>64696D697220</td><td>IMUL BP,FS:[DI+69]</td><td></td><td>0000</td><td>0000</td><td>0000</td><td>0022</td><td></td><td></td><td></td><td>010B</td><td></td><td>0000</td><td>0000</td><td>0000</td>
+		  </tr>
+		  <tr>
+  	        <td>8</td><td>3335</td><td>XOR SI,[DI]</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>0111</td><td>11011010</td><td></td><td></td><td>4804</td>
+		  </tr>
+		  <tr>
+  	        <td>9</td><td>3120</td><td>XOR [BX+SI],SP</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>0113</td><td>00000010</td><td>20CD</td><td></td><td>
+		  </tr>
+		  <tr>
+		    <td>10</td><td>43</td><td>INC BX</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>0115</td><td></td><td></td><td></td><td>
+		  </tr>
+		  <tr>
+		    <td>11</td><td>53</td><td>PUSH BX</td><td></td><td>0001</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0116</td><td></td><td></td><td></td><td>
+		  </tr>
+		  <tr>
+  	        <td>12</td><td>49</td><td>DEC CX</td><td></td><td></td><td></td><td></td><td>0020</td><td></td><td></td><td></td><td>0117</td><td></td><td></td><td></td><td>
+		  </tr>
+		  <tr>
+  	        <td>13</td><td>54</td><td>PUSH SP</td><td></td><td></td><td>FFFF</td><td></td><td></td><td></td><td></td><td></td><td>0118</td><td>00101110</td><td></td><td></td><td>
+		  </tr>
+		  <tr>
+  	        <td>14</td><td>2124</td><td>AND [SI],SP</td><td></td><td></td><td></td><td></td><td>001E</td><td></td><td></td><td></td><td>0119</td><td>00101110</td><td></td><td></td><td>
+  	      </tr>
+		  <tr>
+  	        <td>15</td><td>B409</td><td>MOV AH,09</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>011B</td><td>01001010</td><td></td><td></td><td>
+		  </tr>
+		  <tr>
+  	        <td>16</td><td>BA0001</td><td>MOV DX,0100</td><td>0900</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>011D</td><td></td><td></td><td></td><td>
+		  </tr>
+		  <tr>
+  	        <td>17</td><td>CD21</td><td>INT 21</td><td></td><td></td><td></td><td>0100</td><td></td><td></td><td></td><td></td><td>0120</td><td></td><td></td><td></td><td>
+		  </tr>
+		  <tr>
+  	        <td>18</td><td>B8004C</td><td>MOV AX,4C00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>0122</td><td></td><td></td><td></td><td>
+  	      </tr>
+		  <tr>
+  	        <td>19</td><td>CD21</td><td>INT 21</td><td>4C00</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>0125</td><td></td><td></td><td></td><td>
+  	      </tr>
+        </table> 	
+	  </div>
+	</main>
+	
+	<footer style="padding: 5%">
+	  <div style="font-size: 0.9em; text-align: right; color: darkred;">
+	     <span>&copy; vladimir y.</span>
+	  </div>
+	</footer>
+	
+  </body>
+</html>

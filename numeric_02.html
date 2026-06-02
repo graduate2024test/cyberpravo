@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+	<title>CYBER.PRAVO</title>
+    <link rel="icon" sizes="16x16" type="image/x-icon" href="favicon.ico" />
+	<style>
+      body {
+	    font-family: Arial,
+		Helvetica, sans-serif;
+		}
+	  table {
+		font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+		font-size: 14px;
+		border-collapse: collapse;
+		text-align: center;
+		}
+	  th, td:first-child {
+		background: #AFCDE7;
+		color: white;
+		padding: 10px 20px;
+		}
+	  th, td {
+		border-style: solid;
+		border-width: 0 1px 1px 0;
+		border-color: white;
+		}
+	  td {
+		background: #D8E6F3;
+		}
+	  th:first-child, td:first-child {
+		text-align: left;
+		}
+    </style>
+  </head>
+  
+  <body>
+  
+    <header style="padding: 5%">
+	  <div style="text-align: right;">
+	    <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fcyberpravo.vercel.app%2F&label=visit&icon=github&color=%23084298&message=&style=flat&tz=Europe%2FSaratov">
+	  </div>
+	</header>
+   
+    <main style="padding: 5%">
+	  <div style="text-align: left;">
+		<a href="index.html">GO BACK</a>
+      </div>
+	  <br>
+	  <br>
+	  <div style="font-size: 1.1em; text-align: justify; margin: 5%; padding: 1% ;display: inline-block;">
+	      <div>
+			  <em>Описание</em>: Программа на языке C++.... вычисление ??суммы числового ряда
+				<math>
+				 <mfrac>
+				  <mn>(-1) &middot x <sup><small>3</small></sup></mn>
+				  <mn> (2k + 1) &middot (2k + 2) </mn>
+				 </mfrac>
+				</math> :
+			  <br>
+		  </div>
+		  <div>
+			<pre>
+			  <code>
+				#include iostream
+				#include string
+				#include math.h
+				#include vector
+				using namespace std;
+
+				const double u0 = 1.0;
+
+				double qk(double x, double k)
+				{
+					double result = 0.0;
+					result = ((-1.0) * x * x * x) / ((2 * k + 1) * (2 * k + 2));
+					return result;
+				}
+
+				double rowSum(double uk, double eps, double x, double k, double sum)
+				{
+					while (fabs(uk) > eps)
+					{
+						uk = uk * qk(x, k);
+						sum = sum + uk;
+						k = k + 1.0;
+					}
+					return sum;
+				}
+
+
+				int main()
+				{
+
+					vector<double> sumVector;
+					double x = 0.1;                        // точка, в которой будет высчитываться значение ряда
+					double eps = 0.0001;                   // погрешность, с которой будет вычисляться значение ряда
+					double uk, sum;                        // текущий член ряда и текущая сумма ряда
+					double k;                              // текущий номер
+
+					
+
+					for (int xx = 1; xx < 17; xx = xx + 1)
+					{
+
+						uk = u0;
+						sum = 0;
+						k = 0.0;
+
+						while (fabs(uk) > eps)
+						{
+							
+							sum = sum + uk;
+							uk = uk * qk(x, k);
+							k = k + 1.0;
+						}                                       // значение ряда будем вычислять в цикле while
+						cout << sum << " ";                     // выводим сумму
+						sumVector.push_back(sum);
+						x = x + 0.1;
+						//cout << x << " ";
+						sum = 0.0;
+					}
+
+					cout << endl;
+
+					
+
+				}
+              </code>
+			</pre>
+		  </div>
+		</div> 
+	</main>
+	
+	<footer style="padding: 5%">
+	  <div style="font-size: 0.9em; text-align: right; color: darkred;">
+	     <span>&copy; vladimir y.</span>
+	  </div>
+	</footer>
+	
+  </body>
+</html>

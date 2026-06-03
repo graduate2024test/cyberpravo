@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+	<title>CYBER.PRAVO</title>
+    <link rel="icon" sizes="16x16" type="image/x-icon" href="favicon.ico" />
+	<style>
+      body {
+	    font-family: Arial,
+		Helvetica, sans-serif;
+		}
+	  table {
+		font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+		font-size: 14px;
+		border-collapse: collapse;
+		text-align: center;
+		}
+	  th, td:first-child {
+		background: #AFCDE7;
+		color: white;
+		padding: 10px 20px;
+		}
+	  th, td {
+		border-style: solid;
+		border-width: 0 1px 1px 0;
+		border-color: white;
+		}
+	  td {
+		background: #D8E6F3;
+		}
+	  th:first-child, td:first-child {
+		text-align: left;
+		}
+    </style>
+  </head>
+  
+  <body>
+  
+    <header style="padding: 5%">
+	  <div style="text-align: right;">
+	    <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fcyberpravo.vercel.app%2F&label=visit&icon=github&color=%23084298&message=&style=flat&tz=Europe%2FSaratov">
+	  </div>
+	</header>
+   
+    <main style="padding: 5%">
+	  <div style="text-align: left;">
+		<a href="index.html">GO BACK</a>
+      </div>
+	  <br>
+	  <br>
+	  <div style="font-size: 1.1em; text-align: justify; margin: 5%; padding: 1% ;display: inline-block;">
+	      <div>
+			  <em>Описание</em>: Программа на языке PYTHON
+			  <br>
+		  </div>
+		  <div>
+			<pre>
+			  <code>
+				import socket
+
+				SERVER = "127.0.0.1"
+
+				PORT = 40100
+
+				client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+				client.connect((SERVER, PORT))
+
+				client.sendall(bytes("This is from Client", 'UTF-8'))
+
+				while True:
+					in_data = client.recv(1024)
+					print("From Server: ", in_data.decode())
+					
+					out_data = input("Enter the msg to server: ")
+					
+					client.sendall(bytes(out_data, 'UTF-8'))
+					if out_data == 'bye':
+						break
+						
+				client.close()
+		
+              </code>
+			</pre>
+		  </div>
+		  <div>
+			<p>=========================================</p>
+		  </div>
+		  <div>
+			<pre>
+			  <code>
+				import socket
+
+				LOCALHOST = "127.0.0.1"
+				PORT = 40100
+
+				server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+				server.bind((LOCALHOST, PORT))
+
+				server.listen(1)
+
+				print("Server started")
+				print("Waiting for client request..")
+
+				clientConnection, clientAddress = server.accept()
+				print("Connected client :", clientAddress)
+
+				msg = ''
+				while True:
+					in_data = clientConnection.recv(1024)
+					msg = in_data.decode()
+					
+					if msg == 'bye':
+						break
+						
+					print("From Client: ", msg)
+					out_data = input("Enter msg for client: ")
+					clientConnection.send(bytes(out_data, 'UTF-8'))
+					
+				print("Client disconnected....")
+				clientConnection.close()
+				
+              </code>
+			</pre>
+		  </div>
+		  <div>
+		    <img src="messages.jpg">
+		  </div>
+		</div> 
+	</main>
+	
+	<footer style="padding: 5%">
+	  <div style="font-size: 0.9em; text-align: right; color: darkred;">
+	     <span>&copy; vladimir y.</span>
+	  </div>
+	</footer>
+	
+  </body>
+</html>

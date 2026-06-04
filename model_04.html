@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+	<title>CYBER.PRAVO</title>
+    <link rel="icon" sizes="16x16" type="image/x-icon" href="favicon.ico" />
+	<style>
+      body {
+	    font-family: Arial,
+		Helvetica, sans-serif;
+		}
+    </style>
+  </head>
+  
+  <body>
+  
+    <header style="padding: 5%">
+	  <div style="text-align: right;">
+	    <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fcyberpravo.vercel.app%2F&label=visit&icon=github&color=%23084298&message=&style=flat&tz=Europe%2FSaratov">
+	  </div>
+	</header>
+   
+    <main style="padding: 5%">
+	  <div style="text-align: left;">
+		<a href="index.html">GO BACK</a>
+      </div>
+	  <br>
+	  <br>
+	  <div style="font-size: 1.1em; text-align: justify; margin: 5%; padding: 1% ;display: inline-block;">
+	      <div>
+			  <em>Описание</em>: GNU Octave — свободная программная система для математических вычислений, использующая совместимый с MATLAB язык высокого уровня.
+			  <br>
+			  <br>
+				Квадрат горизонтальными линиями разделен на 4 одинаковые полосы. В каждую из них бросается точка, положение которой равновозможно в любом
+				месте полосы. Затем квадрат разделяется вертикальными линиями на 4 одинаковые полосы. Используя метод статистических испытаний, оценить
+				вероятность того, что в каждой вертикальной полосе будет только по одной точке.
+			  <br>
+			  <br>
+			  <img src="model_04.png">
+			  <br>
+			  <br>
+		  </div>
+		  <div>
+			<pre>
+			  <code>
+				import matplotlib.pyplot as plt
+				import random
+				def roll_dice():
+				 # horizontal_stripes
+				 a = random.randint(1, 4)
+				 b = random.randint(1, 4)
+				 c = random.randint(1, 4)
+				 d = random.randint(1, 4)
+
+				 if (a == b or a == c or a == d or b == c or b == d or c == d):
+				 vertical_stripes_only_one_point = False
+				 else:
+				 vertical_stripes_only_one_point = True
+				 return vertical_stripes_only_one_point
+				num_simulations = 10000
+				num_wins = 0
+				for i in range(num_simulations):
+				 same = roll_dice()
+				 if same:
+				 num_wins += 1
+				overall_win_probability = num_wins/num_simulations
+				print("Average win probability after " + str(num_simulations) + " runs: " + str(overall_win_probability))
+              </code>
+			</pre>
+		  </div>
+		  <div>
+			Average win probability after 10000 runs: 0.0932
+		  </div>
+		</div> 
+	</main>
+	
+	<footer style="padding: 5%">
+	  <div style="font-size: 0.9em; text-align: right; color: darkred;">
+	     <span>&copy; vladimir y.</span>
+	  </div>
+	</footer>
+	
+  </body>
+</html>

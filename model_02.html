@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+	<title>CYBER.PRAVO</title>
+    <link rel="icon" sizes="16x16" type="image/x-icon" href="favicon.ico" />
+	<style>
+      body {
+	    font-family: Arial,
+		Helvetica, sans-serif;
+		}
+    </style>
+  </head>
+  
+  <body>
+  
+    <header style="padding: 5%">
+	  <div style="text-align: right;">
+	    <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fcyberpravo.vercel.app%2F&label=visit&icon=github&color=%23084298&message=&style=flat&tz=Europe%2FSaratov">
+	  </div>
+	</header>
+   
+    <main style="padding: 5%">
+	  <div style="text-align: left;">
+		<a href="index.html">GO BACK</a>
+      </div>
+	  <br>
+	  <br>
+	  <div style="font-size: 1.1em; text-align: justify; margin: 5%; padding: 1% ;display: inline-block;">
+	      <div>
+			  <em>Описание</em>: GNU Octave — свободная программная система для математических вычислений, использующая совместимый с MATLAB язык высокого уровня.
+			  <br>
+			  <br>
+			  Система дифференциальных уравнений Лотки-Вольтерра. Классическая модель взаимодействия двух биологических видов, известная как модель <em>«хищник-жертва»</em>. является математической моделью совместного существования двух биологи-ческих видов (популяций) типа «хищник-жертва» в некоторой изолированной среде. Здесь <math>y</math> - число хищников, <math>x</math> - число жертв. Коэффициент <math>&alpha; &gt; 0</math> опрделяет уровень рождаемости жертв, <math>&beta; &gt; 0</math> - коэффициент уменьшения числа жертв от встречи с хищником, <math>&gamma; &gt; 0</math> - коэффициент уменьшения числа хищников от голода, <math>&delta; &gt; 0</math> - коэффициент увеличения числа хищников. Среда предоставляет жертвам питание в неограниченном количестве, а хищники питаются лишь жертвами.
+			  <br>
+		  </div>
+		  <div>
+			 <math display="block">
+			   <mrow>
+				<mo fence="true">{</mo>
+				<mtable>
+				 <mtr>
+				  <mtd>
+				   <mo>dx/dt</mo>
+				   <mo>=</mo>
+				   <mo>&alpha;x - &beta;xy</mo>
+				   <mtext>,</mtext>
+				  </mtd>
+				 </mtr>
+				 <mtr>
+				  <mtd>
+				   <mo>dy/dt</mo>
+				   <mo>=</mo>
+				   <mo>&delta;x - &gamma;xy</mo>
+				   <mtext>,</mtext>
+				  </mtd>
+				 </mtr>
+				</mtable>
+			   </mrow> 
+			  </math>
+			<div>
+				<p>Построить фазовый портрет системы дифференциальных уравнений при допустимых параметрах:</p>
+				<ul>
+					<li><math>dx/dt</math> — темпы роста популяции кроликов;</li>
+					<li><math>dy/dt</math> — темпы роста популяции лисиц;</li>
+					<li><math>x</math> — популяция кроликов (добычи);</li>
+					<li><math>y</math> — популяция лисиц (хищников);</li>
+					<li><math>&alpha;</math> — рождаемость кроликов;</li>
+					<li><math>&beta;</math> — смертность кроликов из-за хищничества;</li>
+					<li><math>&gamma;</math> — естественная смертность лисиц;</li>
+					<li><math>&delta;</math> — коэффициент, описывающий, сколько съеденных кроликов создает новую лису;</li>
+				</ul>
+			</div>
+
+		  </div>
+		  <div>
+			<pre>
+			  <code>
+				from scipy.integrate import odeint
+				import matplotlib.pyplot as plt
+				import numpy as npy
+				# временной шаг определяет точность метода Эйлера интегрирования
+				timestep = 0.0001
+				# время окончания симуляции
+				end_time = 50
+				# создает вектор времени от 0 до end_time, разделенный временным шагом
+				t = npy.arange(0,end_time,timestep)
+				# инициализировать векторы кроликов (x) и лисиц (y)
+				x = []
+				y = []
+				"""" определение параметров лотка-вольтерра"""
+				# рождаемость кроликов
+				a = 1
+				# смертность кроликов из-за хищничества
+				b = 0.1
+				# естественная смертность лисиц
+				c = 0.5
+				# коэффициент, описывающий, сколько съеденных кроликов создает новую лису
+				d = 0.02
+				""" эйлерово интегрирование """
+				# начальные условия для популяций кроликов (x) и лисиц (y) в момент времени = 0
+				x.append(100)
+				y.append(20)
+				# прямой метод Эйлера интегрирования
+				# к дифференциалам добавляется член возмущения, чтобы сделать моделирование стохастическим
+				for index in range(1,len(t)):
+
+				 #####################################
+				 # система ДУ Лотки-Вольтерра, оценить
+				 # текущие различия
+				 xd = x[index-1] * (a - b*y[index-1])
+				 yd = -y[index-1]*(c - d*x[index-1])
+				 #####################################
+
+				 # оценить следующее значение x и y, используя дифференциалы
+				 next_x = x[index-1] + xd * timestep
+				 next_y = y[index-1] + yd * timestep
+				 # добавить следующее значение x и y
+				 x.append(next_x)
+				 y.append(next_y)
+				""" визуализация """
+				# детерминированный фазовый портрет
+				plt.plot(x,y)
+				plt.xlabel('Популяция лисиц')
+				plt.ylabel('Популяция кроликов')
+				plt.title('Фазовый портрет Лотки-Вольтерры')
+				plt.show()
+              </code>
+			</pre>
+		  </div>
+		  <div>
+			<img src="model_02.png">
+		  </div>
+		</div> 
+	</main>
+	
+	<footer style="padding: 5%">
+	  <div style="font-size: 0.9em; text-align: right; color: darkred;">
+	     <span>&copy; vladimir y.</span>
+	  </div>
+	</footer>
+	
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+	<title>CYBER.PRAVO</title>
+    <link rel="icon" sizes="16x16" type="image/x-icon" href="favicon.ico" />
+	<style>
+      body {
+	    font-family: Arial,
+		Helvetica, sans-serif;
+		}
+    </style>
+  </head>
+  
+  <body>
+  
+    <header style="padding: 5%">
+	  <div style="text-align: right;">
+	    <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fcyberpravo.vercel.app%2F&label=visit&icon=github&color=%23084298&message=&style=flat&tz=Europe%2FSaratov">
+	  </div>
+	</header>
+   
+    <main style="padding: 5%">
+	  <div style="text-align: left;">
+		<a href="index.html">GO BACK</a>
+      </div>
+	  <br>
+	  <br>
+	  <div style="font-size: 1.1em; text-align: justify; margin: 5%; padding: 1% ;display: inline-block;">
+	      <div>
+			  <em>Описание</em>: GNU Octave — свободная программная система для математических вычислений, использующая совместимый с MATLAB язык высокого уровня.
+			  <br>
+			  <br>
+				В городе 4 коммерческих банка. У каждого риск банкротства в течение года составляет 20%.
+				Построить модель банкротства банков.
+				Оценить вероятности того, что в течение года обанкротятся один, два, три, четыре банка.
+			  <br>
+		  </div>
+		  <div>
+			<pre>
+			  <code>
+				import matplotlib.pyplot as plt
+				import math
+				p = 0.2
+				q = (1-p)
+				n = 4
+				k = (0,1,2,3,4)
+				independent_tests = []
+				def сombination(k, n):
+				 n_fac = math.factorial(n)
+				 k_fac = math.factorial(k)
+				 n_minus_k_fac = math.factorial(n-k)
+				 result = (n_fac/(k_fac*n_minus_k_fac))
+				 return result
+				for i in range(0,len(k)):
+				 res = сombination(k[i], n) * pow(p,k[i]) * pow(q,(n-k[i]))
+				 independent_tests.append(res)
+				x = k
+				y = independent_tests
+				plt.bar(x,y,align='center',color ='green')
+				plt.xlabel('Banks amount')
+				plt.ylabel('Bankruptcy probability')
+				plt.title('Histogram probability of bank failures at the same time')
+				plt.xlim(-0.5, 4.5)
+				plt.ylim(0, 0.45)
+				plt.grid(True)
+              </code>
+			</pre>
+		  </div>
+		  <div>
+			<img src="model_03.png">
+		  </div>
+		</div> 
+	</main>
+	
+	<footer style="padding: 5%">
+	  <div style="font-size: 0.9em; text-align: right; color: darkred;">
+	     <span>&copy; vladimir y.</span>
+	  </div>
+	</footer>
+	
+  </body>
+</html>

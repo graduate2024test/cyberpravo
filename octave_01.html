@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+	<title>CYBER.PRAVO</title>
+    <link rel="icon" sizes="16x16" type="image/x-icon" href="favicon.ico" />
+	<style>
+      body {
+	    font-family: Arial,
+		Helvetica, sans-serif;
+		}
+	  table {
+		font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+		font-size: 14px;
+		border-collapse: collapse;
+		text-align: center;
+		}
+	  th, td:first-child {
+		background: #AFCDE7;
+		color: white;
+		padding: 10px 20px;
+		}
+	  th, td {
+		border-style: solid;
+		border-width: 0 1px 1px 0;
+		border-color: white;
+		}
+	  td {
+		background: #D8E6F3;
+		}
+	  th:first-child, td:first-child {
+		text-align: left;
+		}
+    </style>
+  </head>
+  
+  <body>
+  
+    <header style="padding: 5%">
+	  <div style="text-align: right;">
+	    <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fcyberpravo.vercel.app%2F&label=visit&icon=github&color=%23084298&message=&style=flat&tz=Europe%2FSaratov">
+	  </div>
+	</header>
+   
+    <main style="padding: 5%">
+	  <div style="text-align: left;">
+		<a href="index.html">GO BACK</a>
+      </div>
+	  <br>
+	  <br>
+	  <div style="font-size: 1.1em; text-align: justify; margin: 5%; padding: 1% ;display: inline-block;">
+	      <div>
+			  <em>Описание</em>: GNU Octave — свободная программная система для математических вычислений, использующая совместимый с MATLAB язык высокого уровня.
+			  <br>
+			  <br>
+			  Метод бисекции или метод деления отрезка пополам — простейший численный метод для решения нелинейных уравнений вида <math>f(x)=0</math>. Предполагается только непрерывность функции <math>f(x)</math>. Поиск основывается на теореме о промежуточных значениях.
+			  <br>
+		  </div>
+		  <div>
+			<pre>
+			  <code>
+				function bisection_method()
+					f = @(x) x^3 - e^(4*x) + 5.5;
+					eps = 1e-3;
+					a = -1;   b = 3;
+					[x0, fx0] = bisection(@fun01, a, b, eps);
+					if x0 <= b
+						fprintf('F(x): %d\n', fx0);
+						fprintf('x   : %d\n', x0);
+					else
+						fprintf('Abort execution.\n');
+					endif
+				endfunction
+
+				function [result1, result2] = bisection(f, x_L, x_R, eps)
+					if f(x_L)*f(x_R) > 0
+						fprintf('The function has no solutions on the interval!\n')
+					endif
+					x_M = (x_L + x_R)/2.0;
+					f_M = f(x_M);
+					iteration_counter = 1;
+					while abs(f_M) > eps
+						left_f = f(x_L);
+						right_f = f(x_R);
+						if left_f*f_M > 0
+							x_L = x_M;
+						else
+							x_R = x_M;
+						endif
+						x_M = (x_L + x_R)/2;
+						f_M = f(x_M);
+						if iteration_counter > 100
+						  break;
+						endif
+						iteration_counter = iteration_counter + 1;
+					endwhile
+					result1 = x_M;
+					result2 = f_M;
+				endfunction
+              </code>
+			</pre>
+		  </div>
+		</div> 
+	</main>
+	
+	<footer style="padding: 5%">
+	  <div style="font-size: 0.9em; text-align: right; color: darkred;">
+	     <span>&copy; vladimir y.</span>
+	  </div>
+	</footer>
+	
+  </body>
+</html>

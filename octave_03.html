@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+	<title>CYBER.PRAVO</title>
+    <link rel="icon" sizes="16x16" type="image/x-icon" href="favicon.ico" />
+	<style>
+      body {
+	    font-family: Arial,
+		Helvetica, sans-serif;
+		}
+	  table {
+		font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+		font-size: 14px;
+		border-collapse: collapse;
+		text-align: center;
+		}
+	  th, td:first-child {
+		background: #AFCDE7;
+		color: white;
+		padding: 10px 20px;
+		}
+	  th, td {
+		border-style: solid;
+		border-width: 0 1px 1px 0;
+		border-color: white;
+		}
+	  td {
+		background: #D8E6F3;
+		}
+	  th:first-child, td:first-child {
+		text-align: left;
+		}
+    </style>
+  </head>
+  
+  <body>
+  
+    <header style="padding: 5%">
+	  <div style="text-align: right;">
+	    <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fcyberpravo.vercel.app%2F&label=visit&icon=github&color=%23084298&message=&style=flat&tz=Europe%2FSaratov">
+	  </div>
+	</header>
+   
+    <main style="padding: 5%">
+	  <div style="text-align: left;">
+		<a href="index.html">GO BACK</a>
+      </div>
+	  <br>
+	  <br>
+	  <div style="font-size: 1.1em; text-align: justify; margin: 5%; padding: 1% ;display: inline-block;">
+	      <div>
+			  <em>Описание</em>: GNU Octave — свободная программная система для математических вычислений, использующая совместимый с MATLAB язык высокого уровня.
+			  <br>
+			  <br>
+			  Интерполяция — общее наименование для вычислительно-математических техник восстановления функции по имеющемуся дискретному набору её известных значений. 
+			  <br>
+		  </div>
+		  <div>
+			<pre>
+			  <code>
+				##x = [-6.0 -4.0 -2.0 0.0 2.0 4.0 6.0]
+				##y = [-5.76 -2.24 -0.48 0.0 -0.32 -0.96 -1.44]
+				##y_true = 0.01* (x ).^ 3- 0.4* (x / 2).^ 2
+				##
+				##fprintf("Linear interpolation\n")
+				##subplot(2, 3, 1)
+				##for i=2:(length(x))
+				##  xb=x(i)
+				##  xa=x(i-1)
+				##  yb=y(i)
+				##  ya=y(i-1)
+				##  Ai=(yb-ya)/(xb-xa)
+				##  Bi=ya-Ai*xa
+				##  X=xa:0.1:xb
+				##  Y=Ai*X+Bi
+				##  plot(X,Y)
+				##  title("Linear interpolation\n")
+				##  hold on
+				##  grid on
+				##endfor
+				##
+				##fprintf("Inverse quadratic interpolation\n")
+				##subplot(2, 3, 2)
+				##for i=2:(length(x)-1)
+				##  x_im1=x(i-1)
+				##  x_i=x(i)
+				##  x_ip1=x(i+1)
+				##  y_im1=y(i-1)
+				##  y_i=y(i)
+				##  y_ip1=y(i+1)
+				##  X =   [
+				##        x_im1^2,  x_im1,  x_im1^0;
+				##        x_i^2,    x_i,    x_i^0;
+				##        x_ip1^2,  x_ip1,  x_ip1^0
+				##        ]
+				##  Y = [
+				##      y_im1,
+				##      y_i,
+				##      y_ip1
+				##      ]
+				##  ABC = X\Y
+				##  XX=x_im1:0.1:x_i
+				##  YY=(XX.^2).*ABC(1) + XX.*ABC(2) + ABC(3)
+				##  plot(XX,YY)
+				##  title("Inverse quadratic interpolation\n")
+				##  hold on
+				##  if i == (length(x) - 1)
+				##    XX=x_i:0.1:x_ip1
+				##    YY=(XX.^2).*ABC(1) + XX.*ABC(2) + ABC(3)
+				##    plot(XX,YY)
+				##    hold on
+				##  endif
+				##  grid on
+				##endfor
+				##
+				##fprintf("Linear interpolation using Octave\n")
+				##subplot(2, 3, 3)
+				##p2 = polyfit(x,y,2);
+				##f2 = polyval(p2,x);
+				##plot(x,f2)
+				##title("Linear Octave\n")
+				##grid on
+				##
+				##fprintf("Cubic interpolation using Octave\n")
+				##subplot(2, 3, 4)
+				##p3 = polyfit(x,y,3);
+				##f3 = polyval(p3,x);
+				##plot(x,f3)
+				##title("Cubic Octave\n")
+				##grid on
+				##
+				##fprintf("Spline interpolation using Octave\n")
+				##subplot(2, 3, 5)
+				##xsi = x(1):0.25:x(length(x))
+				##ps = spline(x,y);
+				##fsi = ppval(ps,xsi);
+				##plot(xsi,fsi)
+				##title("Spline interpolation using Octave\n")
+				##grid on
+				##
+				##fprintf("True function\n")
+				##subplot(2, 3, 6)
+				##plot(x,y_true)
+				##title("True function\n")
+				##grid on
+				##
+				##
+				##hold off
+
+				#############################################
+				#############################################
+
+				x = [-6.0 -4.0 -2.0 0.0 2.0 4.0 6.0]
+				y = [-5.76 -2.24 -0.48 0.0 -0.32 -0.96 -1.44]
+				y_true = 0.01* (x ).^ 3- 0.4* (x / 2).^ 2
+
+				fprintf("Linear interpolation using Octave\n")
+				subplot(2, 2, 1)
+				p2 = polyfit(x,y,2);
+				f2 = polyval(p2,x);
+				plot(x,f2,'-m')
+				title("Linear Octave\n")
+				grid on
+
+				fprintf("Cubic interpolation using Octave\n")
+				subplot(2, 2, 2)
+				p3 = polyfit(x,y,3);
+				f3 = polyval(p3,x);
+				plot(x,f3,':b')
+				title("Cubic Octave\n")
+				grid on
+
+				fprintf("Spline interpolation using Octave\n")
+				subplot(2, 2, 3)
+				xsi = x(1):0.25:x(length(x))
+				ps = spline(x,y);
+				fsi = ppval(ps,xsi);
+				plot(xsi,fsi,':g')
+				title("Spline Octave\n")
+				grid on
+
+				fprintf("True function\n")
+				subplot(2, 2, 4)
+				plot(x,y_true,'or')
+				title("True function\n")
+				legend('0.01* x^3- 0.4* (x / 2)^2', "location", "south");
+				grid on
+
+
+				hold off
+              </code>
+			</pre>
+		  </div>
+		</div> 
+	</main>
+	
+	<footer style="padding: 5%">
+	  <div style="font-size: 0.9em; text-align: right; color: darkred;">
+	     <span>&copy; vladimir y.</span>
+	  </div>
+	</footer>
+	
+  </body>
+</html>

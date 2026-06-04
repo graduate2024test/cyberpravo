@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+	<title>CYBER.PRAVO</title>
+    <link rel="icon" sizes="16x16" type="image/x-icon" href="favicon.ico" />
+	<style>
+      body {
+	    font-family: Arial,
+		Helvetica, sans-serif;
+		}
+	  table {
+		font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+		font-size: 14px;
+		border-collapse: collapse;
+		text-align: center;
+		}
+	  th, td:first-child {
+		background: #AFCDE7;
+		color: white;
+		padding: 10px 20px;
+		}
+	  th, td {
+		border-style: solid;
+		border-width: 0 1px 1px 0;
+		border-color: white;
+		}
+	  td {
+		background: #D8E6F3;
+		}
+	  th:first-child, td:first-child {
+		text-align: left;
+		}
+    </style>
+  </head>
+  
+  <body>
+  
+    <header style="padding: 5%">
+	  <div style="text-align: right;">
+	    <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fcyberpravo.vercel.app%2F&label=visit&icon=github&color=%23084298&message=&style=flat&tz=Europe%2FSaratov">
+	  </div>
+	</header>
+   
+    <main style="padding: 5%">
+	  <div style="text-align: left;">
+		<a href="index.html">GO BACK</a>
+      </div>
+	  <br>
+	  <br>
+	  <div style="font-size: 1.1em; text-align: justify; margin: 5%; padding: 1% ;display: inline-block;">
+	      <div>
+			  <em>Описание</em>: GNU Octave — свободная программная система для математических вычислений, использующая совместимый с MATLAB язык высокого уровня.
+			  <br>
+			  <br>
+			  Оптимизация (в математике, информатике и исследовании операций) — задача нахождения экстремума (минимума или максимума) целевой функции в некоторой области конечномерного векторного пространства, ограниченной набором линейных и/или нелинейных равенств или неравенств.
+			  <br>
+		  </div>
+		  <div>
+			<pre>
+			  <code>
+				## На складах А, В, С находится сортовое зерно 100, 150, 250 т.,
+				## которое нужно доставить в четыре пункта. Необходимо поставить в
+				## пункту 1 - 50 т.,
+				## пункту 2 – 100 т.,
+				## пункту 3 – 200 т.,
+				## пункту 4 – 150 т. сортового зерна.
+				## Стоимость доставки 1 т. зерна в указанные пункты соответственно равна
+				## со склада А - 80, 30, 50, 20 (д. е.);
+				## со склада В – 40, 10, 60, 70;
+				## со склада С – 10, 90, 40, 30.
+				# Составьте оптимальный план перевозки зерна
+				## из условия минимума стоимости перевозки.
+
+				##         п1      п2       п3       п3
+				##       |---------------------------------|
+				##       | 50      100      200      150   | потребление
+				##       |---------------------------------|
+				## A 100 | 80x11   30x12    50x13    20x14
+				##       |
+				## B 150 | 40x21   10x22    60x23    70x24
+				##       |
+				## C 250 | 10x31   90x32    40x33    30x34
+				## -----------------------------------------
+				## кол-во|
+				c=[80;30;50;20;40;10;60;70;10;90;40;30];
+				a=[
+				  1 1 1 1 0 0 0 0 0 0 0 0;
+				  0 0 0 0 1 1 1 1 0 0 0 0;
+				  0 0 0 0 0 0 0 0 1 1 1 1;
+				  1 0 0 0 1 0 0 0 1 0 0 0;
+				  0 1 0 0 0 1 0 0 0 1 0 0;
+				  0 0 1 0 0 0 1 0 0 0 1 0;
+				  0 0 0 1 0 0 0 1 0 0 0 1;
+				  ];
+				b=[100; 150; 250; 50; 100; 200; 150];
+				ctype="UUUSSSS";
+				vartype="CCCCCCCCCCCC";
+				sense=1;
+				[xmin, fmin, status]=glpk(c,a,b,[], [], ctype, vartype, sense)
+              </code>
+			</pre>
+		  </div>
+		</div> 
+	</main>
+	
+	<footer style="padding: 5%">
+	  <div style="font-size: 0.9em; text-align: right; color: darkred;">
+	     <span>&copy; vladimir y.</span>
+	  </div>
+	</footer>
+	
+  </body>
+</html>

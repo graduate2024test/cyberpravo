@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+	<title>CYBER.PRAVO</title>
+    <link rel="icon" sizes="16x16" type="image/x-icon" href="favicon.ico" />
+	<style>
+      body {
+	    font-family: Arial,
+		Helvetica, sans-serif;
+		}
+	  table {
+		font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+		font-size: 14px;
+		border-collapse: collapse;
+		text-align: center;
+		}
+	  th, td:first-child {
+		background: #AFCDE7;
+		color: white;
+		padding: 10px 20px;
+		}
+	  th, td {
+		border-style: solid;
+		border-width: 0 1px 1px 0;
+		border-color: white;
+		}
+	  td {
+		background: #D8E6F3;
+		}
+	  th:first-child, td:first-child {
+		text-align: left;
+		}
+    </style>
+  </head>
+  
+  <body>
+  
+    <header style="padding: 5%">
+	  <div style="text-align: right;">
+	    <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fcyberpravo.vercel.app%2F&label=visit&icon=github&color=%23084298&message=&style=flat&tz=Europe%2FSaratov">
+	  </div>
+	</header>
+   
+    <main style="padding: 5%">
+	  <div style="text-align: left;">
+		<a href="index.html">GO BACK</a>
+      </div>
+	  <br>
+	  <br>
+	  <div style="font-size: 1.1em; text-align: justify; margin: 5%; padding: 1% ;display: inline-block;">
+	      <div>
+			  <em>Описание</em>: GNU Octave — свободная программная система для математических вычислений, использующая совместимый с MATLAB язык высокого уровня.
+			  <br>
+			  <br>
+			  Метод хорд — итерационный численный метод приближённого нахождения корня уравнения.
+			  <br>
+		  </div>
+		  <div>
+			<pre>
+			  <code>
+				function secant_method()
+					f = @(x) x^2 - 9;
+					eps = 1e-6;
+					x0 = -0.5;  x1 = 1;
+					[result1,result2] = secant(@fun02, x0, x1, eps);
+					if result1 || result2
+						fprintf('F(x): %d\n', 2 + result2);
+						fprintf('x   : %d\n', result1)
+					else
+						fprintf('Abort execution.\n')
+					endif
+				endfunction
+
+				function [result1,result2] = secant(f, x0, x1, eps)
+					f_x0 = f(x0);
+					f_x1 = f(x1);
+					iteration_counter = 0;
+					while abs(f_x1) > eps && iteration_counter < 100
+						try
+							denominator = (f_x1 - f_x0)/(x1 - x0);
+							x = x1 - (f_x1)/denominator;
+						catch
+							fprintf('Error! - denominator zero for x = \n', x1)
+							break
+						end_try_catch
+						x0 = x1;
+						x1 = x;
+						f_x0 = f_x1;
+						f_x1 = f(x1);
+						iteration_counter = iteration_counter + 1;
+					endwhile
+					if abs(f_x1) > eps
+						iteration_counter = -1;
+					endif
+					result1 = x1;
+					result2 = f_x1;
+				endfunction
+              </code>
+			</pre>
+		  </div>
+		</div> 
+	</main>
+	
+	<footer style="padding: 5%">
+	  <div style="font-size: 0.9em; text-align: right; color: darkred;">
+	     <span>&copy; vladimir y.</span>
+	  </div>
+	</footer>
+	
+  </body>
+</html>

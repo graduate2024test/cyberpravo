@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+	<title>CYBER.PRAVO</title>
+    <link rel="icon" sizes="16x16" type="image/x-icon" href="favicon.ico" />
+	<style>
+      body {
+	    font-family: Arial,
+		Helvetica, sans-serif;
+		}
+	  table {
+		font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+		font-size: 14px;
+		border-collapse: collapse;
+		text-align: center;
+		}
+	  th, td:first-child {
+		background: #AFCDE7;
+		color: white;
+		padding: 10px 20px;
+		}
+	  th, td {
+		border-style: solid;
+		border-width: 0 1px 1px 0;
+		border-color: white;
+		}
+	  td {
+		background: #D8E6F3;
+		}
+	  th:first-child, td:first-child {
+		text-align: left;
+		}
+    </style>
+  </head>
+  
+  <body>
+  
+    <header style="padding: 5%">
+	  <div style="text-align: right;">
+	    <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fcyberpravo.vercel.app%2F&label=visit&icon=github&color=%23084298&message=&style=flat&tz=Europe%2FSaratov">
+	  </div>
+	</header>
+   
+    <main style="padding: 5%">
+	  <div style="text-align: left;">
+		<a href="index.html">GO BACK</a>
+      </div>
+	  <br>
+	  <br>
+	  <div style="font-size: 1.1em; text-align: justify; margin: 5%; padding: 1% ;display: inline-block;">
+	      <div>
+			  <em>Описание</em>: GNU Octave — свободная программная система для математических вычислений, использующая совместимый с MATLAB язык высокого уровня.
+			  <br>
+			  <br>
+			  Дифференциальное исчисление — это неотъемлемая часть анализа и, следовательно, раздел математики . Его центральная тема — вычисление локальных изменений функций . В то время как непрерывная функция постоянно присваивает определенные выходные значения своим входным значениям, дифференциальное исчисление определяет, насколько изменяются выходные значения после очень малых изменений входных значений.
+			  <br>
+		  </div>
+		  <div>
+			<pre>
+			  <code>
+				##pkg load symbolic;
+
+				syms x;
+				fx0 = sin(x)^2
+				fx1 = diff(fx0,x,1)
+
+				h = 0.1;
+				x = (0:h:3);
+				y = sin(x).^2;
+				dy = 2*sin(x).*cos(x);
+				#########################################
+				n = length(x);
+				% rigth ---------------------------
+				for i = 1:n-1
+				  dy_r(i) = (sin(x(i + 1))^2- sin(x(i))^2)/h;
+				  er_r(i) = abs(dy_r(i) - dy(i));
+				end
+				% left ------------------------
+				dy_l(1) = 0;
+				er_l(1) = 0;
+				for i = 2:n
+				  dy_l(i) = (sin(x(i))^2- sin(x(i - 1))^2)/h;
+				  er_l(i) = abs(dy_l(i) - dy(i));
+				end
+				% central---------------------
+				dy_c(1) = 0;
+				er_c(1) = 0;
+				for i = 2:n - 1
+				  dy_c(i) = (sin(x(i + 1))^2- sin(x(i - 1))^2)/(2*h);
+				  er_c(i) = abs(dy_c(i) - dy(i));
+				end
+				subplot(2, 2, 2)
+				plot(x,dy,'-o')
+				title('Точная производная')
+				subplot(2, 2, 1)
+				plot(x([1:n-1]),dy_r([1:n-1]),'-h',x([2:n]),dy_l([2:n]),'-p',x([2:n-1]),dy_c([2:n-1]),'-*');
+				legend('правые разности', 'левые разности', 'центральные разности ');
+				title('Производные');
+				#########################################
+				h1 = 0.2;
+				x1 = (0:h:3);
+				y1 = sin(x).^2;
+				dy1 = 2*sin(x).*cos(x);
+				% central---------------------
+				dy_c2(1) = 0;
+				er_c2(1) = 0;
+				for i = 2:n - 1
+				  dy_c2(i) = (sin(x(i + 1))^2- sin(x(i - 1))^2)/(2*h);
+				  er_c2(i) = abs(dy_c(i) - dy(i));
+				end
+				subplot(2, 2, 3)
+				plot(x([1:n-1]),dy_c2([1:n-1]), '-h');
+				title('Центральные разности');
+				#########################################
+				h2 = 0.1;
+				x2 = 0:h2:pi;
+				n2 = length(x2);
+				h_m = h2/2;
+				x_m = 0:h_m:pi;
+				m = length(x_m);
+
+				for i = 1:(n-1)
+				  dy_C(i) = (sin(x(i+1))^2-sin(x(i))^2)/h2;
+				  er1(i) = abs((2*sin(x2(i))*cos(x2(i)))-dy_C(i));
+				endfor
+
+				for i = 1:(m-1)
+				  dym(i) = (sin(x_m(i+1))-sin(x_m(i)))/h_m;
+				  er2(i) = abs((2*sin(x_m(i))*cos(x_m(i)))-dym(i));
+				endfor
+
+				%уточняем значение производной с помощью метода Рунге
+				for i = 1:(n-1)
+				  dy_R(i) = dy(i)-2*(dy(i)-dym(2*i-1));
+				  er3(i) = abs((2*sin(x2(i))*cos(x2(i)))-dy_R(i));
+				endfor
+
+				%строим общий график со всеми тремя кривыми ошибок
+				subplot(2, 2, 4)
+				plot(x2([1:(n-1)]),er1([1:(n-1)]),'--r',x2([1:(n-1)]),er3([1:(n-1)]),'--b');
+				title('Ошибки');
+				legend('центральные разности','Рунге');
+              </code>
+			</pre>
+		  </div>
+		</div> 
+	</main>
+	
+	<footer style="padding: 5%">
+	  <div style="font-size: 0.9em; text-align: right; color: darkred;">
+	     <span>&copy; vladimir y.</span>
+	  </div>
+	</footer>
+	
+  </body>
+</html>
